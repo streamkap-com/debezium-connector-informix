@@ -466,7 +466,7 @@
                                     <goal>single</goal>
                                 </goals>
                                 <configuration>
-                                    <finalName>${project.artifactId}-${project.version}</finalName>
+                                    <finalName>${project.artifactId}-${project.version}-${git.commit.id.abbrev}</finalName>
                                     <attach>true</attach>  <!-- we want to attach & deploy these to Maven -->
                                     <descriptorRefs>
                                         <descriptorRef>${assembly.descriptor}</descriptorRef>
