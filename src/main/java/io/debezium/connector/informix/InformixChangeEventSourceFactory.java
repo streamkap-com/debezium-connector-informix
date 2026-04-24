@@ -12,7 +12,6 @@ import io.debezium.pipeline.ErrorHandler;
 import io.debezium.pipeline.EventDispatcher;
 import io.debezium.pipeline.notification.NotificationService;
 import io.debezium.pipeline.source.snapshot.incremental.IncrementalSnapshotChangeEventSource;
-import io.debezium.pipeline.source.snapshot.incremental.SignalBasedIncrementalSnapshotChangeEventSource;
 import io.debezium.pipeline.source.spi.ChangeEventSourceFactory;
 import io.debezium.pipeline.source.spi.DataChangeEventListener;
 import io.debezium.pipeline.source.spi.SnapshotChangeEventSource;
@@ -84,7 +83,7 @@ public class InformixChangeEventSourceFactory implements ChangeEventSourceFactor
         // If no data collection id is provided, don't return an instance as the implementation requires
         // that a signal data collection id be provided to work.
         return Optional.ofNullable(configuration.getSignalingDataCollectionId())
-                .map(s -> new SignalBasedIncrementalSnapshotChangeEventSource<>(
+                .map(s -> new InformixSignalBasedIncrementalSnapshotChangeEventSource<>(
                         configuration,
                         connectionFactory.mainConnection(),
                         dispatcher, schema, clock,
